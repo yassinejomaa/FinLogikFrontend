@@ -1,0 +1,15 @@
+<div class="card flex justify-content-center">
+    <p-button (click)="showDialog()" icon="pi pi-external-link" label="Add another Wallet"><i class="fa-solid fa-money-check-dollar"></i></p-button>
+    <p-dialog header="add a wallet" [(visible)]="visible" [style]="{width: '50vw'}">
+        <form [formGroup]="formGroup" class="form-layout">
+            <div class="input-group">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">
+                        <i class="fa-solid fa-wallet"></i>
+                    </span>
+                    <input pInputText placeholder="nom" formControlName="nom" />
+                </div>            </div>
+            <p-button label="add a wallet" icon="pi pi-check" iconPos="right" (click)="ajouter()"></p-button>
+        </form>
+    </p-dialog>
+</div>

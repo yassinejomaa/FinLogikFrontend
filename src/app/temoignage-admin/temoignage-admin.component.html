@@ -1,0 +1,81 @@
+<app-navbar-admin />
+
+
+
+<div class="card" style="margin-top: 2%;">
+    <p-table #dt1 [value]="temoignages" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[10, 25, 50]" [loading]="loading" [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [globalFilterFields]="['textTemoignage', 'statu', 'user']">
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+                    (click)="clear(dt1)"></button>
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt1.filterGlobal($event.target, 'contains')"
+                        placeholder="Search keyword" />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+               
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">
+                        textTemoignage
+                        <p-columnFilter type="text" field="textTemoignage" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">
+                        user
+                        <p-columnFilter type="text" field="user.name" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">
+                        statu
+                        <p-columnFilter type="text" field="statu" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">
+                        Action
+                    </div>
+                </th>
+                
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-temoi>
+            <tr>
+                
+                <td>
+                    {{temoi.textTemoignage}}
+                </td>
+                <td>
+                    {{temoi.user.name}} {{temoi.user.prenom}}
+                </td>
+                <td>
+                    {{ temoi.statu}}
+                </td>
+                
+
+                <td>
+                    <button class="btn btn-success" (click)="accepte(temoi.id)"><i class="fa fa-check"></i></button>
+                    <button class="btn btn-danger"><i class="fa fa-times" (click)="refus(temoi.id)"></i></button>
+                    <button class="btn btn-danger"><i class="fa fa-trash" (click)="dele(temoi.id)"></i></button>
+                </td>
+                  
+
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="7">No temoignages found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

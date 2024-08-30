@@ -1,0 +1,44 @@
+ <!-- header section strats -->
+ <header class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container ">
+        <a class="navbar-brand" href="index.html">
+          <span>
+            TradingView
+          </span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class=""> </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav  ">
+            <li class="nav-item active">
+              <a class="nav-link" [routerLink]="['/']"><i class="fa-solid fa-house"></i> Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/login']" *ngIf="nom==null"><i class="fa-solid fa-dollar-sign"></i> Trading</a>
+              <a class="nav-link" [routerLink]="['/mainuser']" *ngIf="nom!=null"><i class="fa-solid fa-dollar-sign"></i> Trading</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/wallet']" *ngIf="nom!=null"><i class="fa-solid fa-wallet"></i> My Wallets</a>
+              <a class="nav-link" [routerLink]="['/login']" *ngIf="nom==null"><i class="fa-solid fa-wallet"></i> My Wallets</a>
+            </li>
+            
+            <li class="nav-item" *ngIf="nom != null">
+              <button class="nav-link" (click)="logout()"><i class="fa fa-user" aria-hidden="true"></i>      {{nom}}      <i class="fa fa-sign-out-alt" aria-hidden="true"></i> Logout</button>
+            </li>
+            
+            <!-- Show this item only if idUser is empty -->
+            <li class="nav-item" *ngIf="nom==null">
+              <a class="nav-link" [routerLink]="['/login']"><i class="fa fa-sign-in-alt" aria-hidden="true"></i> Login</a>
+            </li>
+            
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- end header section -->

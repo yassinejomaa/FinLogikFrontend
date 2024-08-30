@@ -1,0 +1,47 @@
+<app-navbar-admin />
+<p-splitter [style]="{ height: '150px', width: '100%', 'margin-top': '5%' }" styleClass="mb-5">
+    <ng-template pTemplate>
+        <div class="col flex align-items-center justify-content-center bg-primary text-white" style="height: 100%;padding-top: 10%;">
+            <span style="margin-left: 30%;">number of user</span><br>
+            <span style="margin-left: 40%;">{{nbreUser}}</span>
+        </div>
+    </ng-template>
+    
+    
+    <ng-template pTemplate>
+        <div class="col flex align-items-center justify-content-center bg-danger text-white" style="height: 100%;padding-top: 10%;">
+            <span style="margin-left: 30%;">Nombre Temoignage</span><br>
+            <span style="margin-left: 40%;">{{nbreTemoi}}</span>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate>
+        <div class="col flex align-items-center justify-content-center bg-success text-white" style="height: 100%;padding-top: 10%;">
+            <span style="margin-left: 30%;">Nombre Transaction</span><br>
+            <span style="margin-left: 40%;">{{nbreT}}</span>
+        </div>
+    </ng-template>
+    
+    
+    
+</p-splitter>
+<div class="charts-container">
+    <div class="chart-wrapper">
+        <canvas baseChart
+            [type]="'pie'"
+            [datasets]="chartData1"
+            [labels]="chartLabels1"
+            [options]="chartOptions"
+        ></canvas>
+    </div>
+
+    <div class="chart-wrapper">
+        <canvas baseChart
+            [type]="'bar'"
+            [datasets]="chartData"
+            [labels]="chartLabels"
+            [options]="chartOptionsbar"
+        ></canvas>
+    </div>
+    
+</div>

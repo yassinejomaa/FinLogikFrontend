@@ -1,0 +1,43 @@
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Admin navBar</a>
+        <button class="navbar-toggler" type="button" (click)="toggleOffcanvas()" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel" [class.show]="offcanvasOpen">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu Administrateur</h5>
+                <button type="button" class="btn-close btn-close-white" (click)="toggleOffcanvas()" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" [routerLink]="['/accueilAdmin']">Home</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"  role="button" (click)="toggleDropdown()" aria-expanded="false">
+                            Tache Administrative
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" [class.show]="dropdownOpen">
+                            <li><a class="dropdown-item" [routerLink]="['/dashbordAdmin']"><i class="fa fa-tachometer" aria-hidden="true"></i>Dashbord</a></li>
+                            
+                            <li><a class="dropdown-item" [routerLink]="['/temoiAdmin']"><i class="fa-solid fa-message"></i>Gestion des temoignages</a></li>
+                            <!--<li><a class="dropdown-item">Gestion Temoignages</a></li>
+                            <li><a class="dropdown-item">Liste User</a></li>-->
+
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <button id="logout" (click)="signOut()"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</nav>

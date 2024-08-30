@@ -1,0 +1,51 @@
+<div class="card flex justify-content-center">
+    <p-button (click)="showDialog()" icon="pi pi-external-link" label="Buy"></p-button>
+    <p-dialog header="Buy a action" [(visible)]="visible" [style]="{width: '70vw' ,height: '40vw', backgroundColor: '#f5f5f5',border:'0.2em,solid,black'}" class="custom-dialog">
+      <form [formGroup]="formGroup" class="form-layout">
+        
+        <div class="form-field">
+          <label for="total">Total Value</label>
+          <div class="input-group">
+            <i class="fa fa-dollar-sign"></i>
+            <input id="total" type="text" readonly formControlName="total" class="form-control" />
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="wallet">Select your wallet</label>
+          <p-dropdown 
+            id="wallet" 
+            formControlName="selectedWallet" 
+            [options]="porteFeuille" 
+            optionLabel="nom" 
+            optionValue="id"
+            placeholder="Select Wallet">
+          </p-dropdown>
+        </div>
+        
+        
+        <div class="form-field">
+          <label for="selectedOrder">Order Type</label>
+          <p-dropdown id="selectedOrder" formControlName="selectedOrder" [options]="orderOptions" optionLabel="name" placeholder="Select Order Type"></p-dropdown>
+        </div>
+  
+        <!-- Vérifier si le type d'ordre est 'Limit Buy' -->
+        <div class="form-field" *ngIf="formGroup.get('selectedOrder')?.value?.code === 'LB'">
+          <label for="limit">Limit Price</label>
+          <div class="input-group">
+            <i class="fa fa-dollar-sign"></i>
+            <input id="limit" type="text" formControlName="limit" class="form-control" />
+          </div>
+        </div>
+  
+        <div class="form-field">
+          <label for="shares">Shares</label>
+          <p-inputNumber id="shares" formControlName="shares" mode="decimal" [showButtons]="true" inputId="minmax-buttons" [min]="0" [max]="100" class="full-width-input">
+          </p-inputNumber>
+        </div>
+        
+        <p-button label="Submit" icon="pi pi-check" iconPos="right" (click)="submitForm()"></p-button>
+        
+      </form>
+    </p-dialog>
+  </div>

@@ -1,0 +1,71 @@
+
+<app-user-navbar></app-user-navbar>
+<section id="containerModale">
+  <app-acheter-modale [ask]="ask" [symbol]="symbol"></app-acheter-modale>
+  <app-ajouter-porte-feuille></app-ajouter-porte-feuille>
+</section>
+<div class="card">
+  
+  
+  <div class="card-body">
+    <br />
+
+    <!-- Zone de recherche -->
+    <input
+      (change)="onChange($event)"
+      (keyup)="onKeyup($event)"
+      class="form-control"
+      type="text"
+      placeholder="Search..."
+      list="searchresults"
+      autofocus
+    />
+    <datalist id="searchresults">
+      <option
+        *ngFor="let i of searchResults"
+        value="{{ i.symbol | uppercase }}"
+        >{{ i.name | titlecase }}</option
+      >
+    </datalist>
+    <br />
+
+    <!-- Bouton Show -->
+    <button *ngIf="hasInput" class="btn btn-primary">Show</button>
+
+    <!-- Affichage des informations financières uniquement si les données sont disponibles -->
+    <section *ngIf="dataAvailable" id="container">
+      <h6>Previous Close:</h6>{{ previousclose }}
+      <h6>Open:</h6>{{ open }}
+      <h6>Bid:</h6>{{ bid }}
+      <h6>Ask:</h6>{{ ask }}
+      <h6>Volume:</h6>{{ volume }}
+      <h6>Price:</h6>{{ price }}
+    </section>
+
+    <!-- Sélection du timeframe -->
+    <div *ngIf="dataAvailable" class="form-group row" id="timeframe">
+      <label class="col-sm-6 col-form-label" for="timeframe">Timeframe:</label>
+      <div class="col-sm-6">
+        <select (change)="onTimeChange($event)" class="form-control form-control-sm" name="timeframe">
+          <option *ngFor="let timeframe of timeframes" [value]="timeframe.timeframe">{{ timeframe.label }}</option>
+        </select>
+      </div>
+    </div>
+    <br />
+
+    <!-- Graphique -->
+    <canvas
+      *ngIf="dataAvailable"
+      baseChart
+      [type]="'bar'"
+      [datasets]="chartData"
+      [options]="chartOptions"
+      [legend]="chartLegend"
+      [labels]="chartLabels">
+    </canvas>
+  </div>
+</div>
+
+<!-- Footer -->
+<app-user-footer [ngClass]="{'fixed-bottom': !hasInput}"/>
+  

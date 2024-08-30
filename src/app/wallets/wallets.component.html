@@ -1,0 +1,27 @@
+
+<app-user-navbar></app-user-navbar>
+
+<div class="card d-flex justify-content-center align-items-center">
+    <p-carousel [value]="porteFeuilles" [numVisible]="1" [numScroll]="1" orientation="vertical" verticalViewPortHeight="500px" [responsiveOptions]="responsiveOptions">
+        <ng-template let-pf pTemplate="item">
+            <div class="product-item d-flex justify-content-center align-items-center flex-column">
+                <div class="product-item-content text-center">
+                    <div class="mb-3">
+                        <img src="assets/images/wallet.jpg" class="wallet-img" style="width: 50%;height: 50%;" />
+                    </div>
+                    <div>
+                        <h4 class="mb-1">{{pf.nom}}</h4>
+                        <h6 class="mt-0 mb-3">{{pf.valeur}} $</h6>
+                        <div class="car-buttons mt-5">
+                            <a [routerLink]="['/porteFeuille', pf.id]">
+                                <p-button type="button" styleClass="p-button p-button-rounded mr-2">View Action</p-button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-carousel>
+</div>
+
+<app-user-footer></app-user-footer>

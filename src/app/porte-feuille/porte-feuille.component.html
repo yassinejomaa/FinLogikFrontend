@@ -1,0 +1,69 @@
+<app-user-navbar></app-user-navbar>
+
+<h3>
+    Valeur porte feuille total: {{ valeurPorteFeuilleTotal }} 
+    <span *ngIf="valeurPorteFeuilleTotal > 50000; else negativeValue" style="color: green;">
+        +{{ (valeurPorteFeuilleTotal - 50000).toFixed(2) }}
+    </span>
+    <ng-template #negativeValue>
+        <span style="color: red;">
+            -{{ (50000 - valeurPorteFeuilleTotal).toFixed(2) }}
+        </span>
+    </ng-template>
+</h3>
+
+<div class="card" style="margin-bottom: 20%;">
+    <p-table
+        #dt1
+        [value]="actifPosseder"
+        [rows]="10"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[10, 25, 50]"
+        [loading]="loading"
+        [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">
+                        NomActif
+                        <p-columnFilter type="text" field="NomActif" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">
+                        Buy
+                        <p-columnFilter type="numeric" field="TotalAcheter" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">
+                        Sell
+                        <p-columnFilter type="numeric" field="TotalVendu" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-actif>
+            <tr>
+                <td>{{ actif.NomActif }}</td>
+                <td>{{ actif.TotalAcheter }}</td>
+                <td>{{ actif.TotalVendu }}</td>
+                <td>
+                    <app-sell-modale [actif]="actif" [id]="id"></app-sell-modale>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="7">No action found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<app-user-footer></app-user-footer>

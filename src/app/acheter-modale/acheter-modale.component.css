@@ -1,0 +1,54 @@
+.form-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Space between form fields */
+  }
+  
+  .form-field {
+    display: flex;
+    align-items: center;
+    gap: 16px; /* Space between label and input */
+  }
+  
+  .form-field label {
+    flex: 1;
+    margin: 0;
+  }
+  
+  .input-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 4px;
+    flex: 2; /* Adjust the flex ratio if needed */
+  }
+  
+  .input-group i {
+    font-size: 1.2rem;
+    color: #555;
+    margin-right: 8px;
+  }
+  
+  .form-control, .p-dropdown, .full-width-input {
+    border: none;
+    outline: none;
+    padding: 8px;
+    flex: 1;
+  }
+  
+  .p-dropdown {
+    width: 100%;
+  }
+  
+  .full-width-input {
+    width: 10em;
+    height: 4.5em;
+  }
+  
+  /* Additional styling for dialog */
+  .custom-dialog {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
